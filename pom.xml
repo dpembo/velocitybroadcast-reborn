@@ -5,7 +5,7 @@
 
     <groupId>com.adzel.velocitybroadcast</groupId>
     <artifactId>velocitybroadcast</artifactId>
-    <version>0.2-pre</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>VelocityBroadcast</name>
     <description>Broadcast plugin for Minecraft Velocity proxy.</description>
