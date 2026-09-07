@@ -28,6 +28,28 @@ public class ConfigHandler {
         this.logger = logger;
     }
 
+    /**
+     * Strips a trailing "# comment" from a config line, but only when the
+     * '#' appears outside of any quoted value. This prevents hex colour
+     * codes (e.g. MiniMessage gradients like <gradient:#1E90FF:#00FF7F>)
+     * from being truncated as if they were comments.
+     */
+    private static String stripComment(String line) {
+        boolean inSingle = false;
+        boolean inDouble = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '\'' && !inDouble) {
+                inSingle = !inSingle;
+            } else if (c == '"' && !inSingle) {
+                inDouble = !inDouble;
+            } else if (c == '#' && !inSingle && !inDouble) {
+                return line.substring(0, i);
+            }
+        }
+        return line;
+    }
+
     public void load() {
         try {
             Files.createDirectories(configPath.getParent());
@@ -56,7 +78,7 @@ public class ConfigHandler {
             try (BufferedReader reader = Files.newBufferedReader(configPath)) {
                 Map<String, String> configMap = reader.lines()
                     .filter(line -> line.contains(":") && !line.trim().startsWith("#"))
-                    .map(line -> line.replaceAll("#.*", "").split(":", 2))
+                    .map(line -> stripComment(line).split(":", 2))
                     .collect(Collectors.toMap(
                         a -> a[0].trim(),
                         a -> a[1].trim().replaceAll("^['\"]|['\"]$", ""),
