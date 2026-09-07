@@ -124,30 +124,30 @@ jobs:
           NAME="${{ steps.naming.outputs.release_name }}"
           JAR="${{ steps.artifact.outputs.final_jar }}"
           PRERELEASE="${{ steps.naming.outputs.prerelease }}"
+          VERSION="${{ steps.version.outputs.version }}"
+          SHA="${{ github.sha }}"
 
-          # Create the release
+          NOTES=$(cat <<EOF
+          Automated build of **VelocityBroadcast**
+
+          - **Version:** \`${VERSION}\`
+          - **Artifact:** \`${JAR}\`
+          - **Commit:** ${SHA}
+          - **Date:** $(date -u +"%Y-%m-%d %H:%M UTC")
+          EOF
+          )
+
           if [ "$PRERELEASE" = "true" ]; then
             gh release create "$TAG" \
               --title "$NAME" \
-              --notes "Automated build of **VelocityBroadcast**  
-          
-**Version:** \`${{ steps.version.outputs.version }}\`  
-**Artifact:** \`$JAR\`  
-
-Built from commit: ${{ github.sha }}" \
+              --notes "$NOTES" \
               --prerelease \
               "$JAR"
           else
             gh release create "$TAG" \
               --title "$NAME" \
-              --notes "Automated release of **VelocityBroadcast**  
-          
-**Version:** \`${{ steps.version.outputs.version }}\`  
-**Artifact:** \`$JAR\`  
-
-Built from commit: ${{ github.sha }}" \
+              --notes "$NOTES" \
               "$JAR"
           fi
 
           echo "Release created successfully: $TAG"
-
