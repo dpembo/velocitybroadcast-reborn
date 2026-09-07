@@ -1,9 +1,0 @@
-{
-  "id": "velocitybroadcast",
-  "name": "VelocityBroadcast",
-  "version": "0.2-pre",
-  "authors": ["Adzel"],
-  "main": "com.adzel.velocitybroadcast.VelocityBroadcast",
-  "description": "A proxy-wide broadcast plugin for Velocity.",
-  "website": "https://github.com/AdzelFirestar/VelocityBroadcast"
-}

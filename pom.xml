@@ -18,34 +18,35 @@
 
     <repositories>
         <repository>
-            <id>velocitypowered-repo</id>
-            <url>https://repo.velocitypowered.com/releases/</url>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>        
         </repository>
     </repositories>
 
     <dependencies>
         <!-- Velocity API -->
-        <dependency>
-            <groupId>com.velocitypowered</groupId>
-            <artifactId>velocity-api</artifactId>
-            <version>3.1.1</version>
-            <scope>provided</scope>
-        </dependency>
+<!-- Velocity API -->
+    <dependency>
+        <groupId>com.velocitypowered</groupId>
+        <artifactId>velocity-api</artifactId>
+        <version>3.1.1</version>
+        <scope>provided</scope>
+    </dependency>
 
-        <!-- Adventure API -->
-        <dependency>
-            <groupId>net.kyori</groupId>
-            <artifactId>adventure-api</artifactId>
-            <version>4.15.0</version>
-        </dependency>
+    <!-- Adventure API (resolves from Maven Central, no extra repo needed) -->
+    <dependency>
+        <groupId>net.kyori</groupId>
+        <artifactId>adventure-api</artifactId>
+        <version>4.15.0</version>
+    </dependency>
 
-        <!-- Adventure MiniMessage -->
-        <dependency>
-            <groupId>net.kyori</groupId>
-            <artifactId>adventure-text-minimessage</artifactId>
-            <version>4.15.0</version>
-        </dependency>
-    </dependencies>
+    <!-- Adventure MiniMessage -->
+    <dependency>
+        <groupId>net.kyori</groupId>
+        <artifactId>adventure-text-minimessage</artifactId>
+        <version>4.15.0</version>
+    </dependency>
+</dependencies>
 
     <build>
         <plugins>

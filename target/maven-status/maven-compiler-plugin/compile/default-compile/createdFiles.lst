@@ -1,7 +1,0 @@
-com\adzel\velocitybroadcast\VelocityBroadcast.class
-com\adzel\velocitybroadcast\VBCommand.class
-com\adzel\velocitybroadcast\BroadcastCommand.class
-com\adzel\velocitybroadcast\ConfigHandler.class
-com\adzel\velocitybroadcast\ReloadCommand.class
-velocity-plugin.json
-com\adzel\velocitybroadcast\PrefixCommand.class
